@@ -41,11 +41,13 @@ class Contacts extends Component {
   render() {
     const { contacts } = this.state;
     return (
-      <div>
+      // Fragment allows removing unnecessary parent elem from dom
+      // (div in this case)
+      <React.Fragment>
         {contacts.map(contact => (
           <Contact key={contact.id} contact={contact} />
         ))}
-      </div>
+      </React.Fragment>
     );
   }
 }
