@@ -1,34 +1,25 @@
 import React, { Component } from 'react';
 
 class AddContact extends Component {
-  constructor(props) {
-    super(props);
-    this.nameInput = React.createRef();
-    this.emailInput = React.createRef();
-    this.phoneInput = React.createRef();
-  }
-
   /* eslint-disable */
+  state = {
+    name: '',
+    email: '',
+    phone: '',
+  };
+
+  formChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
   formSubmit = e => {
     e.preventDefault();
-    const contact = {
-      name: this.nameInput.current.value,
-      email: this.emailInput.current.value,
-      phone: this.phoneInput.current.value,
-    };
-    console.table(contact);
+    console.log(this.state);
   };
-
-  static defaultProps = {
-    name: 'Test test',
-    email: 'test@test.com',
-    phone: '555-555-5555',
-  };
-
   /* eslint-enable */
 
   render() {
-    const { name, email, phone } = this.props;
+    const { name, email, phone } = this.state;
     return (
       <div className="card mb-3">
         <div className="card-header">Add Contact</div>
@@ -41,8 +32,8 @@ class AddContact extends Component {
                 name="name"
                 className="form-control form-control-lg"
                 placeholder="Enter name"
-                defaultValue={name}
-                ref={this.nameInput}
+                value={name}
+                onChange={this.formChange}
               />
             </div>
             <div className="form-group">
@@ -52,8 +43,8 @@ class AddContact extends Component {
                 name="email"
                 className="form-control form-control-lg"
                 placeholder="Enter email address"
-                defaultValue={email}
-                ref={this.emailInput}
+                value={email}
+                onChange={this.formChange}
               />
             </div>
             <div className="form-group">
@@ -63,8 +54,8 @@ class AddContact extends Component {
                 name="phone"
                 className="form-control form-control-lg"
                 placeholder="Enter phone number"
-                defaultValue={phone}
-                ref={this.phoneInput}
+                value={phone}
+                onChange={this.formChange}
               />
             </div>
             <input
