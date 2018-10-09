@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Consumer } from '../context';
+import { Consumer } from '../../context';
 
 class Contact extends Component {
   // static propTypes = {
@@ -10,7 +10,7 @@ class Contact extends Component {
   // }
 
   state = {
-    showContactInfo: false
+    showContactInfo: false,
   };
 
   // Using arrow func for lexical this
@@ -61,7 +61,7 @@ class Contact extends Component {
 }
 
 Contact.propTypes = {
-  contact: PropTypes.object.isRequired
+  contact: PropTypes.object.isRequired,
 };
 
 export default Contact;
