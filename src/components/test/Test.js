@@ -1,30 +1,47 @@
 import React, { Component } from 'react';
 
 export class Test extends Component {
-  componentDidMount() {
-    console.log('componentDidMount!');
-  }
-  // Being deprecated?
-  componentWillMount() {
-    console.log('componentWillMount!');
-  }
+  state = {
+    name: '',
+    email: '',
+  };
 
-  componentDidUpdate() {
-    console.log('componendDidUpdate!!');
+  componentDidMount() {
+    fetch('https://jsonplaceholder.typicode.com/users/2')
+      .then(response => response.json())
+      .then(jsonData =>
+        this.setState({
+          name: jsonData.name,
+          email: jsonData.email,
+        })
+      );
   }
   // Being deprecated?
-  componentWillUpdate() {
-    console.log('componentWillUpdate!');
-  }
+  // componentWillMount() {
+  //   console.log('componentWillMount!');
+  // }
+
+  // componentDidUpdate() {
+  //   console.log('componendDidUpdate!!');
+  // }
   // Being deprecated?
-  componentWillReceiveProps(nextProps, nextState) {
-    console.log('componentWillReceiveProps:', nextProps, nextState);
-  }
+  // componentWillUpdate() {
+  //   console.log('componentWillUpdate!');
+  // }
+
+  // Being deprecated?
+  // componentWillReceiveProps(nextProps, nextState) {
+  //   console.log('componentWillReceiveProps:', nextProps, nextState);
+  // }
 
   render() {
+    const { name, email } = this.state;
     return (
       <div>
         <h1 className="display-4">Test Component</h1>
+        <p>Getting data from JSONplaceholder</p>
+        <p>name: {name}</p>
+        <p>email: {email}</p>
       </div>
     );
   }
