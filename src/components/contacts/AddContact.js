@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Consumer } from '../../context';
 import TextInputGroup from '../layout/TextInputGroup';
-import uuid from 'uuid';
+import axios from 'axios';
 
 class AddContact extends Component {
   /* eslint-disable */
@@ -51,17 +51,19 @@ class AddContact extends Component {
     }
 
     const newContact = {
-      id: uuid(),
       name,
       email,
       phone,
     };
 
-    dispatch({
-      type: 'ADD_CONTACT',
-      payload: newContact,
-    });
-
+    axios
+      .post('https://jsonplaceholder.typicode.com/users', newContact)
+      .then(res =>
+        dispatch({
+          type: 'ADD_CONTACT',
+          payload: res.data,
+        })
+      );
     // Clear input fields and errors
     this.setState({
       name: '',
