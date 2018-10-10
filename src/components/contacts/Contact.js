@@ -20,10 +20,19 @@ class Contact extends Component {
     this.setState({ showContactInfo: !this.state.showContactInfo });
   };
 
-  deleteClick = (id, dispatch) => {
-    axios
-      .delete(`https://jsonplaceholder.typicode.com/users/${id}`)
-      .then(res => dispatch({ type: 'DELETE_CONTACT', payload: id }));
+  deleteClick = async (id, dispatch) => {
+    // Don't need to do anything with the response jsonplaceholder sends
+    // to a delete request. Would likely use confirmation with regular api
+    try {
+      await axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
+      dispatch({ type: 'DELETE_CONTACT', payload: id });
+    } catch (e) {
+      console.log(
+        'New users arent added to JSONPlaceholder. Deleting from DOM.',
+        e
+      );
+      dispatch({ type: 'DELETE_CONTACT', payload: id });
+    }
   };
 
   render() {
