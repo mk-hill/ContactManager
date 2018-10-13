@@ -35,9 +35,9 @@ class EditContact extends Component {
     const { name, email, phone } = this.state;
 
     // Check for errors
-    const nameRe = /^[a-zA-Z]{2,20}$/;
+    const nameRe = /^[a-z A-Z]{2,20}$/;
     const emailRe = /^([a-zA-Z0-9_.-]+)@([a-zA-Z0-9_.-]+)\.([a-zA-z]{2,5})$/;
-    const phoneRe = /^\(?\d{3}\)?[-. ]?\d{3}[-. ]?\d{4}$/;
+    const phoneRe = /^\s*(?:\+?(\d{1,3}))?[-. (]*(\d{3})[-. )]*(\d{3})[-. ]*(\d{4})(?: *x(\d+))?\s*$/;
     if (!nameRe.test(name)) {
       this.setState({
         errors: {
